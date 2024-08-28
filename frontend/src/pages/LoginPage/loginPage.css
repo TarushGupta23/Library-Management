@@ -1,0 +1,93 @@
+section#login-page {
+    width: 100%; height: 100%;
+    background: url('./../../../public/xyz.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#login-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    backdrop-filter: blur(10px);
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+
+    & form {
+        width: 30rem;
+        padding: 4rem;
+        display: flex; flex-direction: column; gap: 1.4rem;
+        color: white;
+
+        & span {
+            display: flex; flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        & h1 {
+            font-size: 3rem;
+            background: var(--gradient);
+            width: fit-content;
+            background-clip: text;
+            color: transparent;
+        }
+
+        & h3 {
+            margin-bottom: 1.4rem;
+            font-size: 1rem; font-weight: normal;
+        }
+
+        & input {
+            background: none;
+            outline: none; 
+            border: 2px solid white;
+            padding: .4rem 1rem;
+            font-size: 1rem;
+            color: white;
+            caret-color: white; 
+            border-radius: .6rem;
+            width: 100%;
+        }
+
+        & button {
+            margin-top: 1.4rem; margin-bottom: .2rem;
+            border: none; outline: none;
+            padding: .4rem;
+            font-size: 1rem;
+            border-radius: .6rem;
+            background: var(--gradient);
+            color: var(--black);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        & #forgot-pwd { 
+            cursor: pointer; 
+            font-style: italic; 
+            width: fit-content;
+        }
+
+        & p {
+            font-size: .8rem;
+            font-style: italic;
+
+            & a {
+                color: var(--color2);
+                font-size: 1rem;
+            }
+        }
+    }
+    & #login-explain {
+        background: var(--gradient);
+        width: 25rem;
+        padding: 4rem;
+        font-size: .8rem;
+        color: var(--base-3);
+        display: flex; flex-direction: column; gap: .6rem;
+        align-items: baseline; justify-content: baseline;
+        text-align: justify;
+
+        & img { margin-bottom: 2rem; }
+
+        & h3 { font-size: 1.1rem; text-align: left; }
+    }
+}

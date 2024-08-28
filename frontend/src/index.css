@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+* {
+    margin: 0; padding: 0; 
+    box-sizing: border-box;
+    user-select: none;
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --font2: "Merriweather", serif;
+
+    --gradient: linear-gradient(40deg, #6aa3ff 0%, #c2e9fb 100%);
+    --color1: #6aa3ff;
+    --color2: #c2e9fb;
+    --color3: var(--color2);
+
+    --base-1: #0f0d15;
+    --base-2: #1d1a26;
+    --base-3: #2b2836;
+    --base-4: #3b3743;
+    --base-5: #4b4858;
+}
+html, body { overflow: hidden; font-size: 16px; }
+#root { width: 100vw; height: 100vh; }
+
+.flex-center {
+    display: flex;
+    align-items: center; justify-content: center;
+}
+
+ul { list-style-type: none; }
+ul::-webkit-scrollbar { display: none; }
+
+.bgrd-blur {
+    backdrop-filter: blur(100px);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.display-wrapper {
+    display: flex; flex-direction: column; gap: .5rem; 
+    align-items: baseline; justify-content: baseline;
+    width: 100%; height: 100%;
+    padding: 4rem;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    transition: all .4s ease;
+
+    & .logo {
+        width: 40%;
+    }
+}

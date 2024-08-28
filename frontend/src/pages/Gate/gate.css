@@ -1,0 +1,345 @@
+div#gate-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 4fr 1fr;
+    column-gap: 2rem; row-gap: 2rem;
+    width: 100%; height: 100%;
+    padding: 2rem;
+    position: relative; 
+    background-color: var(--base-3);
+    
+    & section { 
+        border-radius: 2rem; 
+        box-shadow: 0px 10px 20px rgba(15, 13, 21, .4);
+        color: white;
+        overflow: hidden;
+    }
+    & section#heading {
+        grid-column: 1 / 3;
+        position: relative;
+    
+        & .bgrd-img {
+            position: absolute;
+            width: 100%; height: 100%;
+            top: 0; left: 0;
+            background: url('./../../../public//nitjCampus.jpg');
+            background-size: 140%;
+            background-position-y: 40%;
+        }
+    
+        & .text {
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+            position: relative;
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            justify-content: center;
+            padding: 0px 4rem;
+            
+            & h1 { 
+                font-size: 2.4rem; 
+                font-family: var(--font2);
+            }
+            & h3 { font-size: 1.1rem; }
+        }
+    
+    }
+    & section#student-entry {
+        position: relative;
+    
+        & .blob1 {
+            position: absolute;
+            width: 120px; height: 150px;
+            top: 0; left: 0;
+            background-color: var(--color1);
+        }
+        & .blob2 {
+            position: absolute;
+            width: 150px; height: 150px;
+            top: 50%; left: 20%;
+            background-color: var(--color2);
+        }
+        & .blob3 {
+            position: absolute;
+            top: 70%; left: 80%;
+            width: 150px; height: 100px;
+            background-color: var(--color3);
+        }
+        
+        & .display-container {
+            position: relative;
+            width: 100%; height: 100%;
+            
+            & form{
+                
+                & #time-container {
+                    margin-bottom: 2rem;
+                    padding: 0px .2rem;
+                    font-size: 1.2rem;
+                    font-style: italic;
+                }
+            
+                & .inp-container {
+                    width: 100%;
+                    position: relative;
+            
+                    & input {
+                        outline: none; border: none;
+                        font-size: 1rem;
+                        padding: .4rem 1.2rem;
+                        border-radius: 8px;
+                        width: 100%;
+                        pointer-events: all;
+                        position: relative;
+                    }
+                }
+            
+                & p {
+                    font-style: italic;
+                    padding: 0px .2rem;
+                }
+                & .btn-container {
+                    width: 100%;
+                    display: flex; gap: 1rem;
+                    margin-top: 2rem;
+            
+                    & button {
+                        background-color: white;
+                        border: none; outline: none;
+                        padding: .4rem;
+                        font-size: 1rem;
+                        border-radius: 8px;
+                        width: 8rem;
+                        cursor: pointer;
+                    }
+                }
+            }
+    
+            & .std-profile {
+                
+                & .std-name {
+                    margin-bottom: 1.8rem;
+                    font-size: 1.6rem;
+                }
+                
+                & .logo {
+                    width: 10rem;
+                    border-radius: 2rem;
+                }
+
+                & .in-out-bar {
+                    position: absolute;
+                    bottom: 1rem; left: 2rem; 
+                    padding: .4rem;
+                    width: calc(100% - 4rem);
+                    font-size: 1.2rem;
+                    background: var(--base-3);
+                    cursor: pointer;
+                    
+    
+                    & #progress-bar {
+                        position: absolute;
+                        top: 100%; left: 0;
+                        width: 100%; height: 4px;
+                        background: var(--gradient);
+                    }
+                    
+                    & #progress-bar.active {
+                        width: 0;
+                        transition: all 4s linear;
+                    }
+                    & #progress-bar.inactive {
+                        width: 100%;
+                        transition: all 0s linear;
+                        transition-delay: .5s;
+                    }
+                }
+    
+                & button {
+                    background-color: white;
+                    border: none; outline: none;
+                    margin-top: 1.8rem;
+                    padding: .2rem;
+                    font-size: .8rem;
+                    border-radius: 8px;
+                    width: 6rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    
+        & .visitor-entry {
+    
+            & #time-container {
+                margin-bottom: 2rem;
+                padding: 0px .2rem;
+                font-size: 1.2rem;
+                font-style: italic;
+            }
+        
+            & .inp-container {
+                width: 100%; flex: 1;
+                position: relative;
+                display: flex; flex-direction: column; 
+                justify-content: space-between;
+                gap: .5rem;
+        
+                & input {
+                    outline: none; border: none;
+                    font-size: 1rem;
+                    padding: .4rem 1.2rem;
+                    border-radius: 8px;
+                    width: 100%;
+                    pointer-events: all;
+                    position: relative;
+                }
+            }
+        
+            & p {
+                font-style: italic;
+                padding: 0px .2rem;
+            }
+            & .btn-container {
+                width: 100%;
+                display: flex; gap: 1rem;
+                margin-top: 2rem;
+        
+                & button {
+                    background-color: white;
+                    border: none; outline: none;
+                    padding: .4rem;
+                    font-size: 1rem;
+                    border-radius: 8px;
+                    min-width: 8rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    
+        & .active {
+            opacity: 1 !important;
+            z-index: inherit;
+            pointer-events: all !important;
+        }
+    }
+    
+    & section#info {
+        grid-column: 1 / 3;
+        position: relative;
+    
+        & .blob1 {
+            position: absolute;
+            width: 7%; height: 100%;
+            top: 80%; left: 0;
+            background-color: var(--color2);
+        }
+        & .blob2 {
+            position: absolute;
+            width: 20%; height: 20px;
+            top: -18px; left: 30%;
+            background-color: var(--color3);
+        }
+        & .blob3 {
+            position: absolute;
+            top: 60%; left: 80%;
+            width: 200px; height: 150px;
+            background-color: var(--color1);
+        }
+        
+        & ul {
+            position: relative;
+            display: flex;
+            align-items: center; justify-content: space-evenly;
+            height: 100%;
+    
+            & li {
+                background: var(--gradient);
+                padding: .3rem;
+                width: 15%;
+                border-radius: 1.5rem;
+                color: var(--base-3);
+    
+                & p {
+                    color: white;
+                    padding: .6rem 1rem .6rem 1rem;
+                    background-color: var(--base-3);
+                    border-bottom-left-radius: 1.25rem;
+                    border-bottom-right-radius: 1.25rem;
+                    border-top-left-radius: .3rem;
+                    border-top-right-radius: .3rem;
+                    text-align: center;
+                }
+                
+                & h4 {
+                    padding: .2rem 1rem .2rem 1rem;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    
+    & section#student-list {
+        position: relative;
+        z-index: 1;
+    
+        & .blob1 {
+            position: absolute;
+            width: 15%; height: 30%;
+            top: 70%; left: 0;
+            background-color: var(--color3);
+            z-index: -1;
+        }
+        & .blob2 {
+            position: absolute;
+            width: 30%; height: 50px;
+            top: 0px; left: 40%;
+            background-color: var(--color1);
+            z-index: -1;
+        }
+        & .blob3 {
+            z-index: -1;
+            position: absolute;
+            top: 60%; left: 80%;
+            width: 200px; height: 150px;
+            background-color: var(--color2);
+        }
+    
+        & #table-container {
+            padding: 3.5rem;
+            padding-top: 2.2rem;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: flex-end;
+            width: 100%; height: 100%;
+    
+            & form {
+                display: flex; gap: .4rem;
+                align-items: center; justify-content: center;
+    
+                & button {
+                    background-color: white;
+                    border: none; outline: none;
+                    padding: .3rem;
+                    font-size: .8rem;
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                    width: 8rem;
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+    
+                & button.selected {
+                    background: var(--gradient);
+                    cursor: default;
+                }
+            }
+            
+            & div {
+                overflow-y: scroll;
+                width: 100%; height: 100%;
+            }
+    
+            & div::-webkit-scrollbar { display: none; }
+        }
+    
+    }
+}
+

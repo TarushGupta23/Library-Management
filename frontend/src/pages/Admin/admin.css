@@ -1,0 +1,120 @@
+#admin-container { 
+    display: flex; 
+    height: 100vh;
+    overflow: scroll;
+    position: relative;
+}
+
+#admin-container nav {
+    background-color: var(--base-3);
+    color: white;
+    width: 28rem; height: 100%;
+    padding: 1rem;
+    display: flex; flex-direction: column; gap: 2rem;
+
+    & header {
+        background: url('./../../../public/nitjCampus2.jpeg');
+        background-size: 150%;
+        background-position-y: 40%;
+        background-position-x: 40%;
+        border-radius: 1.5rem;
+        overflow: hidden; 
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6);
+        
+        & div {
+            padding: 2rem;
+            display: flex; flex-direction: column; gap: .2rem;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3));
+        }
+        & h1 { font-family: var(--font2); }
+        & h2 { font-size: 1rem; }
+    }
+
+    section#admin-profile {
+        border-top: 2px solid var(--base-4);
+        border-bottom: 2px solid var(--base-4);
+        padding: 2rem 0px;
+        display: flex; gap: 1rem;
+
+        & button {
+            width: 40%;
+            border: none; outline: none;
+            background: var(--gradient);
+            padding: .1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            
+            & div {
+                border-radius: calc(10px - .05rem);
+                background-color: var(--base-3);
+                display: flex; align-items: center; justify-content: center;
+                padding: .2rem;
+            }
+
+            & span {
+                background: var(--gradient);
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        & img { 
+            width: 20%; aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 1.5rem;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        & div.text {
+            display: flex; flex-direction: column;
+            align-items: baseline; justify-content: space-evenly;
+            height: 100%; width: 100%;
+
+            & .btn-container {
+                display: flex; gap: 1rem;
+                width: 100%; 
+                padding: .2rem;
+            }
+        }
+        
+    }
+
+    & section#admin-navigation {
+        flex: 1;
+        position: relative;
+
+        & ul {
+            position: absolute;
+            width: 100%; height: 100%;
+            top: 0; left: 0;
+            display: flex; flex-direction: column; gap: 1rem;
+            align-items: end; justify-content: baseline;
+
+            & li {
+                border-radius: 1rem;
+                width: 100%;
+                padding: .6rem 1.5rem;
+                cursor: pointer;
+                background-color: var(--base-4);
+                display: flex; gap: .5rem;
+                align-items: center; justify-content: baseline;
+                font-size: 1.1rem;
+
+                & img {
+                    height: 2rem;
+                }
+            }
+
+            & li.active { background: var(--color1); }
+        }
+    }
+}
+
+#admin-container main {
+    flex: 1;
+    background-color: var(--base-2);
+    height: 100%;
+    overflow: scroll;
+}

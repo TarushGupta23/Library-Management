@@ -1,0 +1,89 @@
+#home-page {
+    background-color: var(--base-3);
+    width: 100%; height: 100%;
+    position: relative; 
+    overflow: scroll;
+
+    & button {
+        font-size: 1rem;
+        padding: .4rem 2rem;
+        border: none; outline: none;
+        background: var(--gradient);
+        border-radius: .5rem;
+        font-weight: bold;
+        color: var(--base-3);
+        cursor: pointer;
+    }
+
+    & #nav-login {
+        position: fixed;
+        top: 1.6rem; right: 2rem;
+        z-index: 100;
+    }
+    
+    & section { color: white; height: 100vh; }
+    
+    & section#hero-section {
+        width: 100vw; height: 100vh;
+        position: relative;
+        padding: 10rem;
+        background: url('./../../../public/hlo2.jpg');
+        background-size: cover;
+        background-position: center;
+        z-index: 2;
+
+        & .container {
+            position: relative;
+            border-radius: 2rem; overflow: hidden;
+        }
+
+        & .blob1 {
+            position: absolute;
+            height: 60%; aspect-ratio: 1;
+            top: 0%; left: 0;
+            background-color: var(--color1);
+        }
+        & .blob2 {
+            position: absolute;
+            width: 10%; aspect-ratio: 1;
+            bottom: 8%; right: 50%;
+            background-color: var(--color2);
+        }
+        & .blob3 {
+            position: absolute;
+            top: 30%; right: 1%;
+            width: 300px; height: 200px;
+            background-color: var(--color1);
+        }
+
+        & .wrapper {
+            display: flex; 
+            justify-content: space-between;
+
+            & div {
+                width: 100%; height: 100%;
+                display: flex; flex-direction: column; gap: .8rem; 
+                align-items: baseline; justify-content: center;
+                padding: 8rem; padding-right: 2rem;
+
+                & h1 { 
+                    font-size: 3rem; 
+                    width: 25rem;
+                }
+
+                & h3 { 
+                    font-size: 1rem; font-weight: normal; 
+                    margin-bottom: 2rem; 
+                }
+            }
+
+            & span#hero-blob {
+                width: 100%; height: 100%;
+                padding: 2rem;
+                align-self: center;
+
+                & img { width: 100%; }
+            }
+        }
+    }
+}

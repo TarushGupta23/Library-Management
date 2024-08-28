@@ -1,0 +1,21 @@
+table {
+    width: 100%; height: 100%;
+    border-collapse: collapse;
+    border: 2px solid white;
+
+    & td, & th {
+        padding: .4rem .8rem;
+        text-align: center;
+        border: 2px solid white;
+    }
+    
+    & thead tr {
+        color: var(--base-3);
+        position: sticky; top: -1px;
+        background: var(--gradient);
+    }
+
+    & tr:nth-child(2n) {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}

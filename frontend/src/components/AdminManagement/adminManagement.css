@@ -1,0 +1,201 @@
+section#admin-management {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 2rem;
+    display: grid;
+    width: 100%;
+    column-gap: 2rem; row-gap: 2rem;
+    position: relative; 
+    color: white;
+
+    & h2 {
+        font-size: 1.8rem;
+    }
+
+    & .admin-info {
+        border-radius: 2rem;
+        overflow: hidden;
+        position: relative;
+
+        & .blob1 {
+            position: absolute;
+            width: 120px; aspect-ratio: 1;
+            top: 30%; left: 12%;
+            background-color: var(--color2);
+        }
+        & .blob2 {
+            position: absolute;
+            width: 70px; height: 80px;
+            bottom: 0%; right: 0%;
+            background-color: var(--color1);
+        }
+        
+        & .wrapper {
+            display: flex; gap: 2rem;
+            padding: 4rem; height: 100%;
+            align-items: center;
+
+            & img {
+                height: 10rem; aspect-ratio: 1;
+                border-radius: 30%;
+            }
+
+            & .content {
+                display: flex; flex-direction: column;
+                justify-content: center;
+                gap: .2rem; 
+                width: 100%;
+
+                & p {
+                    font-style: italic;
+                    font-size: .8rem;
+                    color: #ffffffa0;
+                }
+
+                & h2.admin-name {
+                    font-size: 1.8rem;
+                    margin-bottom: 1rem;
+                } 
+
+                & .btn-container {
+                    margin-top: 1rem;
+                    width: 100%;
+                    display: flex; gap: 2rem;
+
+                    & button {
+                        width: 40%;
+                        border: none; outline: none;
+                        background: var(--gradient);
+                        padding: .1rem;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        
+                        & div {
+                            border-radius: calc(10px - .05rem);
+                            background-color: var(--base-3);
+                            display: flex; align-items: center; justify-content: center;
+                            padding: .2rem;
+                        }
+            
+                        & span {
+                            background: var(--gradient);
+                            background-clip: text;
+                            -webkit-background-clip: text;
+                            color: transparent;
+                            -webkit-text-fill-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    & .create-admin {
+        border-radius: 2rem;
+        overflow: hidden;
+        position: relative;
+
+        & .blob1 {
+            position: absolute;
+            top: 20%; right: 0;
+            width: 70px; aspect-ratio: 1;
+            background-color: var(--color2);
+        }
+        & .blob2 {
+            position: absolute;
+            width: 120px; height: 80px;
+            bottom: 0%; left: 0%;
+            background-color: var(--color1);
+        }
+        
+        & .wrapper {
+            padding: 4rem; height: 100%;
+
+            & .input-container {
+                display: flex; flex-direction: column; gap: .6rem;
+
+                & input {
+                    border: none; outline: none;
+                    border-radius: 100px;
+                    background: none;
+                    border: 1px solid var(--color2);
+                    color: var(--color2);
+                    caret-color: var(--color2);
+                    padding: .4rem 1.2rem;
+                }
+                & input::placeholder {
+                    color: #c2e9fb60;
+                }
+
+                & button {
+                    margin-top: 1rem;
+                    border: none; outline: none;
+                    border-radius: 100px;
+                    background: none;
+                    border: 1px solid var(--color1);
+                    color: var(--color1);
+                    padding: .4rem 1rem;
+                    cursor: pointer;
+                    background-color: #6aa3ff10;
+                }
+                
+            }
+        }
+    }
+    
+    & .admin-list {
+        border-radius: 2rem;
+        overflow: hidden;
+        position: relative;
+        grid-column: 1 / 3;
+
+        & .blob1 {
+            position: absolute;
+            bottom: 2%; left: 15%;
+            width: 150px; height: 50px;
+            background-color: var(--color2);
+        }
+        & .blob2 {
+            position: absolute;
+            width: 220px; height: 30px;
+            top: 0; left: 60%;
+            background-color: var(--color1);
+        }
+        
+        & .wrapper {
+            padding: 4rem; height: 100%;
+
+            & ul {
+                display: grid; column-gap: 2rem; row-gap: 1rem;
+                grid-template-columns: 1fr 1fr 1fr;
+                margin-top: 2rem;
+
+                & button {
+                    justify-self: end;
+                    height: 2rem;
+                    padding: 0px 2rem;
+                    border-radius: 100px;
+                    border: none; outline: none;
+                    border: 1px solid red;
+                    background-color: rgba(255, 0, 0, 0.2);
+                    cursor: pointer;
+    
+                    & img {
+                        padding: 5px;
+                        height: 100%;
+                    }
+                }
+
+                & span {
+                    font-size: 1.2rem;
+                    justify-self: center;
+                }
+
+                & h3 {
+                    font-size: 1.2rem;
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+}
