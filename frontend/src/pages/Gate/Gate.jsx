@@ -4,6 +4,7 @@ import { inOutDisplayTime, serverUrl } from '../../App';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import Table from '../../components/Table/Table';
+import BarcodeReader from 'react-barcode-reader';
 
 function formatTime() {
     const date = new Date()
@@ -172,6 +173,22 @@ export default function Gate() {
             }
         }
     }
+
+    const handleScan = async (data) => {
+        if (data) {
+            const response = await axios.post(`${serverUrl}/submit-gate-entry`, {
+                type: 'user', userId: data
+            }, {
+                headers: { 'Content-Type': 'application/json' }
+            });
+            handleEntryResponce(response.data)
+        }
+    };
+    
+    const handleError = (err) => {
+        console.error(err);
+        alert('failed to scan barcode')
+    };
     
     useEffect(() => {
         document.getElementById('time-container').innerHTML = 'Time: ' + formatTime();
@@ -187,6 +204,10 @@ export default function Gate() {
     }, [navigate])
     
     return <div id='gate-container'>
+        <BarcodeReader
+            onError={handleError}
+            onScan={handleScan}
+        />
         <section id='heading'>
             <div className="bgrd-img" />
             <div className='text'> 
