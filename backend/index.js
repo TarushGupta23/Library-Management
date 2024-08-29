@@ -13,6 +13,7 @@ const app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
+emailjs.init();
 
 app.get('/', (req, res) => {
     return res.send('hello from NIT Jalandhar, Library Server')
@@ -230,6 +231,10 @@ app.get('/my-info', (req, res) => {
             return res.json({ message: 'failed' });
         }
     })
+})
+
+app.get('/change-password', (req, res) => {
+    console.log(req.query)
 })
 
 app.listen(port, () => {

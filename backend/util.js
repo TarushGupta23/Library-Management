@@ -269,6 +269,7 @@ const getLongUserHistoryData = async (formData) => {
             b.branchcode, 
             b.categorycode, 
             b.sex,
+            b.email,
             DATE_FORMAT(ge.date, '%Y-%m-%d') AS date, 
             ge.inTime, 
             ge.outTime, 
@@ -418,9 +419,9 @@ const getAdminGateHistoryData = async (formData) => {
         if (length === 'long') {
             result = await getLongUserHistoryData(formData)
             result = result.map(item => ([
-                item.cardnumber, item.name, item.branchcode, item.categorycode, item.sex, item.date, item.inTime, item.outTime, item.totalTime, 
+                item.cardnumber, item.name, item.branchcode, item.email, item.categorycode, item.sex, item.date, item.inTime, item.outTime, item.totalTime, 
             ]))
-            return { title: ['User Id', 'Name', 'Branch', 'Category', 'Gender', 'Date', 'In Time', 'Out Time', 'Total Time'], body: result };
+            return { title: ['User Id', 'Name', 'Branch', 'Email', 'Category', 'Gender', 'Date', 'In Time', 'Out Time', 'Total Time'], body: result };
         } else {
             result = await getShortUserHistoryData(formData)
             result = result.map(item => ([

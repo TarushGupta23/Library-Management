@@ -64,11 +64,21 @@ export default function AdminManagement({admin, img}) {
         navigate('/login')
     }
 
-    const changePassword = () => {
+    const changePassword = async () => {
         if (!admin.email) {
             alert('Admin email not found')
         } else {
-
+            const otp = Math.floor(Math.random() * 999999 + 100000)
+            const responce = await axios.get(`${serverUrl}/change-password`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-access-token': admin.email
+                }, params: {
+                    email: admin.email,
+                    otp: otp
+                }
+            })
+            console.log(responce)
         }
     }
 
