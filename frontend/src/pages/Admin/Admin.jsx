@@ -22,6 +22,22 @@ export default function Admin() {
     }
 
     useEffect(() => {
+        const getMyInfo = async () => {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`${serverUrl}/my-info`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-access-token': token
+                }
+            })
+            if (response.data.message === 'authorised') {
+                setAdmin(response.data.userData)
+                let img = response.data.userData.profileImage
+                img = (typeof img === 'string')? `data:image/png;base64,${img}` : './icons/user.png'
+                setAdminImg(img)
+            }
+        }
+
         const checkToken = async () => {
             const token = localStorage.getItem('token');
             if (!token) {
@@ -39,6 +55,8 @@ export default function Admin() {
                         navigate('/');
                     } else if (response.data.message === 'failed') {
                         navigate('/login');
+                    } else {
+                        getMyInfo()
                     }
                 } catch (error) {
                     console.error('Error verifying token:', error);
@@ -48,22 +66,6 @@ export default function Admin() {
         };
 
         checkToken();
-
-        const getMyInfo = async () => {
-            const token = localStorage.getItem('token');
-            const response = await axios.get(`${serverUrl}/my-info`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-access-token': token
-                }
-            })
-            setAdmin(response.data.userData)
-            let img = response.data.userData.profileImage
-            img = (typeof img === 'string')? `data:image/png;base64,${img}` : './icons/user.png'
-            setAdminImg(img)
-        }
-
-        getMyInfo()
     }, [navigate]);
 
     return <div id='admin-container'>

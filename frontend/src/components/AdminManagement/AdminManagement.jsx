@@ -83,9 +83,8 @@ export default function AdminManagement({admin, img}) {
     }
 
     useEffect(() => {
-
         getAdminList();
-    }, [])
+    }, [navigate])
 
     return <section id="admin-management">
         <div className="admin-info">

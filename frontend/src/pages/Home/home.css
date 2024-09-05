@@ -68,7 +68,8 @@
 
                 & h1 { 
                     font-size: 3rem; 
-                    width: 25rem;
+                    /* width: 25rem;
+                    border: 2px solid red; */
                 }
 
                 & h3 { 

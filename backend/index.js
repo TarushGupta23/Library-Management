@@ -13,7 +13,6 @@ const app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
-emailjs.init();
 
 app.get('/', (req, res) => {
     return res.send('hello from NIT Jalandhar, Library Server')

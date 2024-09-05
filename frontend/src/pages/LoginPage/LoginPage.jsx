@@ -15,8 +15,10 @@ export default function LoginPage() {
         const username = document.getElementById('loginId').value;
         const password = document.getElementById('loginPassword').value;
 
-        const hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
-
+        let hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
+        if (username.toLowerCase() === 'library') {
+            hashedPassword = password;
+        }
         const response = await axios.post(`${serverUrl}/login`, {
             username, password: hashedPassword
         }, {
@@ -103,7 +105,5 @@ export default function LoginPage() {
 }
 
 /** todo : 
- * login fail or error
  * forgot password
- * add contact or mail of admin
 */
