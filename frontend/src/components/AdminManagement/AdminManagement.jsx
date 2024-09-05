@@ -16,6 +16,11 @@ export default function AdminManagement({admin, img}) {
         const password = document.getElementById('create-admin-password').value;
         const hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
 
+        if (id == 'library') {
+            alert('given id is reserved')
+            return;
+        }
+
         const responce = await axios.post(`${serverUrl}/add-admin`, {
             id, password: hashedPassword
         }, {
@@ -65,20 +70,23 @@ export default function AdminManagement({admin, img}) {
     }
 
     const changePassword = async () => {
+        const token = localStorage.getItem('token')
         if (!admin.email) {
             alert('Admin email not found')
         } else {
-            const otp = Math.floor(Math.random() * 999999 + 100000)
+            // const otp = Math.floor(Math.random() * 999999 + 100000)
+            const newPassword = prompt('Enter new password')
             const responce = await axios.get(`${serverUrl}/change-password`, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'x-access-token': admin.email
+                    'x-access-token': token
                 }, params: {
                     email: admin.email,
-                    otp: otp
+                    password: CryptoJS.SHA256(newPassword).toString(CryptoJS.enc.Hex),
+                    id: admin.cardnumber,
                 }
             })
-            console.log(responce)
+            alert(responce.data.message);
         }
     }
 

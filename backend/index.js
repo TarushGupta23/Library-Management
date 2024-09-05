@@ -233,7 +233,25 @@ app.get('/my-info', (req, res) => {
 })
 
 app.get('/change-password', (req, res) => {
-    console.log(req.query)
+    const token = req.headers['x-access-token'];
+    jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+        if (err) {
+            return res.json({ message: 'failed' });
+        }
+        const { role } = decoded;
+        if (role === 'admin') {
+            const query = `UPDATE library_admin SET password = ? WHERE adminId = ?;`
+            Utils.db.query(query, [req.query.password, req.query.id], (err, result) => {
+                if (err) {
+                    console.log(err)
+                    return res.json({ message: 'failed' });
+                }
+                return res.json({ message: 'success' });
+            })
+        } else {
+            return res.json({ message: 'failed' });
+        }
+    })
 })
 
 app.listen(port, () => {
