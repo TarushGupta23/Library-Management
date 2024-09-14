@@ -20,11 +20,8 @@ div#gate-container {
     
         & .bgrd-img {
             position: absolute;
-            width: 100%; height: 100%;
+            width: 100%;
             top: 0; left: 0;
-            background: url('./../../../public//nitjCampus.jpg');
-            background-size: 140%;
-            background-position-y: 40%;
         }
     
         & .text {

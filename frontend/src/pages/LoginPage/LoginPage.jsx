@@ -4,6 +4,7 @@ import './loginPage.css'
 import { serverUrl } from '../../App';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { instituteFullName, instituteLogo, instituteName } from '../../Config';
 
 
 export default function LoginPage() {
@@ -19,6 +20,7 @@ export default function LoginPage() {
         if (username.toLowerCase() === 'library') {
             hashedPassword = password;
         }
+
         const response = await axios.post(`${serverUrl}/login`, {
             username, password: hashedPassword
         }, {
@@ -72,9 +74,9 @@ export default function LoginPage() {
     return <section id='login-page' className='flex-center'>
         <div id='login-container'>
             <div id='login-explain'>
-                <img src="nitjLogo.png" alt="" />
-                <h3>Dr BR Ambdekar NIT Jalandhar <br /> Library Login Portal</h3>
-                Dr. B.R. Ambedkar National Institute of Technology Jalandhar is a premier technical institution in India, dedicated to fostering innovation and excellence. Our library, a vital part of the campus, offers a vast collection of resources and a quiet space for study, supporting the academic journey of our students and faculty.
+                <img src={instituteLogo} alt="" />
+                <h3>{instituteName} <br /> Library Login Portal</h3>
+                The {instituteFullName} library is a key resource center, offering an extensive collection of materials and a quiet environment for study, supporting the academic and research needs of students and faculty across various disciplines. It plays a crucial role in fostering learning and intellectual growth within the campus community.
             </div>
 
             <form onSubmit={(event) => loginUser(event)}>
@@ -103,7 +105,3 @@ export default function LoginPage() {
         </div>
     </section>
 }
-
-/** todo : 
- * forgot password
-*/

@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import Table from '../../components/Table/Table';
 import BarcodeReader from 'react-barcode-reader';
+import { defaultUserImage, instituteImage2, instituteLogo, instituteName } from '../../Config';
 
 function formatTime() {
     const date = new Date()
@@ -25,7 +26,7 @@ function formatTime() {
 
 const initialData = {
     student: {
-        name: "?", id: '?', category: '?', inOut: '?', image: 'nitjLogo.png'
+        name: "?", id: '?', category: '?', inOut: '?', image: defaultUserImage
     }, visitor: {
         name: '?', contact: '?', email: '?', inOut: '?'
     }
@@ -101,7 +102,7 @@ export default function Gate() {
             id: data.cardnumber,
             category: data.categorycode,
             inOut: inOut,
-            image: (typeof data.profileImage === 'string')? `data:image/png;base64,${data.profileImage}` : './icons/user.png'
+            image: (typeof data.profileImage === 'string')? `data:image/png;base64,${data.profileImage}` : defaultUserImage
         }
         setStudentData({...initialData, student: newData})
         setDisplay('std-profile')
@@ -209,9 +210,9 @@ export default function Gate() {
             onScan={handleScan}
         />
         <section id='heading'>
-            <div className="bgrd-img" />
+            <img className="bgrd-img" src={instituteImage2} alt='' />
             <div className='text'> 
-                <h1>Dr BR Ambedkar NIT Jalandhar</h1>
+                <h1>{instituteName}</h1>
                 <h3>Library In/Out Management System</h3>
             </div>
         </section>
@@ -224,7 +225,7 @@ export default function Gate() {
             <div className="display-container bgrd-blur">
 
                 <form id='student-entry' className={display==='std-entry'? 'active display-wrapper' : 'display-wrapper'}>
-                    <img src="nitjLogo.png" alt="NIT Jalandhar Logo" className="logo" />
+                    <img src={instituteLogo} alt="NIT Jalandhar Logo" className="logo" />
                     <div id="time-container"> Time: 22/3/2024 10:30 pm </div>
 
                     <span className="inp-container">
@@ -239,7 +240,7 @@ export default function Gate() {
                 </form>
 
                 <div className={display==='std-profile'? "active std-profile display-wrapper" : "std-profile display-wrapper"}>
-                    <img src={studentData.student.image} alt="Student Profile" className={studentData.student.image === 'icons/user.png' ? "logo logo-gradient" : "logo"} />
+                    <img src={studentData.student.image} alt="Student Profile" className={studentData.student.image === defaultUserImage ? "logo logo-gradient" : "logo"} />
                     <h3 className="std-name">{studentData.student.name}</h3>
                     <p className="std-id">Roll No: {studentData.student.id}</p>
                     <div id="time-container"> Time: 22/3/2024 10:30 pm </div>

@@ -1,6 +1,6 @@
 section#login-page {
     width: 100%; height: 100%;
-    background: url('./../../../public/xyz.jpg');
+    background: url('./../../../public/login-bgrd.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -86,7 +86,10 @@ section#login-page {
         align-items: baseline; justify-content: baseline;
         text-align: justify;
 
-        & img { margin-bottom: 2rem; }
+        & img { 
+            margin-bottom: 2rem; 
+            width: 60%;
+        }
 
         & h3 { font-size: 1.1rem; text-align: left; }
     }

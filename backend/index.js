@@ -2,12 +2,9 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken');
-const Utils = require('./util')
+const Utils = require('./util');
+const { SECRET_KEY, serverPort } = require('./Config');
 
-require('dotenv').config();
-
-const SECRET_KEY = process.env.SECRET_KEY;
-const port = 8081;
 const app = express()
 
 app.use(bodyParser.json());
@@ -15,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
 
 app.get('/', (req, res) => {
-    return res.send('hello from NIT Jalandhar, Library Server')
+    return res.send('Hello from Library Management Server - Tarush Gupta')
 })
 
 app.post('/login', (req, res) => {
@@ -31,6 +28,8 @@ app.post('/login', (req, res) => {
             const token = jwt.sign({ username, role: 'admin' }, SECRET_KEY, { expiresIn: '1d' });
             return res.json({ message: 'success', token, role: 'admin' });
         }
+
+        console.log(data)
         
         return res.json({ message: 'failed' });
     })
@@ -254,6 +253,6 @@ app.get('/change-password', (req, res) => {
     })
 })
 
-app.listen(port, () => {
-    console.log('listening on port :', port)
+app.listen(serverPort, () => {
+    console.log('listening on port :', serverPort)
 })

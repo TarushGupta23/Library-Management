@@ -1,17 +1,18 @@
-const mysql = require('mysql')
+const mysql = require('mysql');
+const Config = require('./Config');
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'nitjLibraryGate'
+    host: Config.gateHost,
+    user: Config.gateDbUserName,
+    password: Config.gateDbPassword,
+    database: Config.gateDbName
 })
 
 const kohaDb = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'koha_library'
+    host: Config.kohaHost,
+    user: Config.kohaUserName,
+    password: Config.kohaPassword,
+    database: Config.kohaDbName
 })
 
 const getProfileImg = async (bNo) => {
@@ -99,9 +100,9 @@ const getGateDisplayData = async () => {
         SELECT 
             ge.inTime, ge.outTime, b.cardnumber, b.firstname, b.middle_name, b.surname, b.sex, b.categorycode, b.branchcode
         FROM
-            nitjLibraryGate.gate_entries AS ge 
+            ${Config.gateDbName}.gate_entries AS ge 
         JOIN 
-            koha_library.borrowers AS b 
+            ${Config.kohaDbName}.borrowers AS b 
         ON 
             ge.uId = b.borrowernumber
         WHERE 
@@ -171,10 +172,10 @@ const getAdminGateStatsData = async () => {
             SUM(CASE WHEN b.categorycode = 'STAFF' THEN 1 ELSE 0 END) AS staff_count
         FROM
             (SELECT DISTINCT ge.uId, ge.date
-            FROM nitjLibraryGate.gate_entries AS ge
+            FROM ${Config.gateDbName}.gate_entries AS ge
             WHERE ge.date = CURDATE()) AS unique_entries
         JOIN
-            koha_library.borrowers AS b
+            ${Config.kohaDbName}.borrowers AS b
         ON
             unique_entries.uId = b.borrowernumber;`
     try {
@@ -201,7 +202,7 @@ const getAdminGateStatsData = async () => {
                 DATE_FORMAT(ge.date, '%Y-%m-%d') AS day, 
                 COUNT(DISTINCT ge.uId) AS distinct_entries 
             FROM 
-                nitjLibraryGate.gate_entries AS ge 
+                ${Config.gateDbName}.gate_entries AS ge 
             WHERE 
                 DATE(ge.date) >= CURDATE() - INTERVAL 7 DAY
             GROUP BY 
@@ -275,9 +276,9 @@ const getLongUserHistoryData = async (formData) => {
             ge.outTime, 
             TIMEDIFF(ge.outTime, ge.inTime) AS totalTime
         FROM 
-            nitjLibraryGate.gate_entries AS ge
+            ${Config.gateDbName}.gate_entries AS ge
         JOIN 
-            koha_library.borrowers AS b 
+            ${Config.kohaDbName}.borrowers AS b 
         ON 
             ge.uId = b.borrowernumber
         WHERE 
@@ -335,9 +336,9 @@ const getShortUserHistoryData = async (formData) => {
             DATE_FORMAT(ge.date, '%Y-%m-%d') AS date, 
             TIMEDIFF(ge.outTime, ge.inTime) AS totalTime
         FROM 
-            nitjLibraryGate.gate_entries AS ge
+            ${Config.gateDbName}.gate_entries AS ge
         JOIN 
-            koha_library.borrowers AS b 
+            ${Config.kohaDbName}.borrowers AS b 
         ON 
             ge.uId = b.borrowernumber
         WHERE 
@@ -385,7 +386,7 @@ const getVisitorHistoryData = async (formData) => {
         SELECT 
             ${selectFields}
         FROM 
-            nitjLibraryGate.visitor_entries AS ve
+            ${Config.gateDbName}.visitor_entries AS ve
         WHERE 
             (IFNULL(?, '') = '' OR ve.date >= ?)
             AND (IFNULL(?, '') = '' OR ve.date <= ?)
@@ -488,7 +489,7 @@ const getAdminList = async () => {
         FROM 
             library_admin AS la
         JOIN 
-            koha_library.borrowers AS kb 
+            ${Config.kohaDbName}.borrowers AS kb 
         ON 
             la.adminid COLLATE utf8mb4_general_ci = kb.cardnumber COLLATE utf8mb4_general_ci
     `;

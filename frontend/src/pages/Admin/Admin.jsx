@@ -5,11 +5,12 @@ import axios from 'axios'
 import { serverUrl } from '../../App'
 import AdminGate from '../../components/AdminGate/AdminGate'
 import AdminManagement from '../../components/AdminManagement/AdminManagement'
+import { defaultUserImage, instituteImage1, instituteName } from '../../Config'
 
 export default function Admin() {
     const navigate = useNavigate()
     const [page, setPage] = useState('admin')
-    const [adminImg, setAdminImg] = useState('icons/user.png')
+    const [adminImg, setAdminImg] = useState(defaultUserImage)
     const [admin, setAdmin] = useState({
         cardnumber: '',
         firstname: '', surname: '',
@@ -33,7 +34,7 @@ export default function Admin() {
             if (response.data.message === 'authorised') {
                 setAdmin(response.data.userData)
                 let img = response.data.userData.profileImage
-                img = (typeof img === 'string')? `data:image/png;base64,${img}` : './icons/user.png'
+                img = (typeof img === 'string')? `data:image/png;base64,${img}` : defaultUserImage
                 setAdminImg(img)
             }
         }
@@ -71,13 +72,14 @@ export default function Admin() {
     return <div id='admin-container'>
         <nav>
             <header>
+                <img src={instituteImage1} alt="institute image" />
                 <div>
-                    <h1>NIT Jalandhar Library</h1>
+                    <h1>{instituteName} Library</h1>
                     <h2>Admin Dashboard</h2>
                 </div>
             </header>
             <section id="admin-profile">
-                <img src={adminImg} alt="admin profile pic" className={adminImg === 'icons/user.png' ? "logo-gradient" : ""} />
+                <img src={adminImg} alt="admin profile pic" className={adminImg === defaultUserImage ? "logo-gradient" : ""} />
                 <div className='text'>
                     <h1>{admin.firstname} {admin.surname}</h1>
                     <span className="btn-container">
@@ -101,7 +103,3 @@ export default function Admin() {
         </main>
     </div>
 }
-
-/** todo
- * icons on admin-navigation
-*/ 
